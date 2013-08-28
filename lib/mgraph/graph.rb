@@ -6,8 +6,8 @@ require 'set'
 
 module MGraph
   class Graph
-    def initialize
-      @graph_store = VertexEdgeTable.new
+    def initialize graph_store = VertexEdgeTable.new
+      @graph_store = graph_store
     end
 
     def add_edge v1, v2

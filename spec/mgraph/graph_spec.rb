@@ -14,6 +14,36 @@ describe MGraph::Graph do
     end
   end
 
+  describe "#breadth_first_traverse" do
+    it "yields the vertices in breadth-first order, starting at the given vertex" do
+      graph = MGraph::Graph.new
+      graph.add_edge 1, 2
+      graph.add_edge 1, 3
+      graph.add_edge 2, 4
+      graph.add_edge 2, 5
+      graph.add_edge 3, 5
+      graph.add_edge 4, 5
+
+      yielded = []
+      graph.breadth_first_traverse(1) { |vertex| yielded << vertex }
+
+      expect(yielded).to eq [1, 2, 3, 4, 5]
+    end
+
+    it "returns an Enumerator when no block is given" do
+      graph = MGraph::Graph.new
+      enumerator = graph.breadth_first_traverse(1)
+      graph.add_edge 1, 2
+      graph.add_edge 1, 3
+      graph.add_edge 2, 4
+
+      graph.breadth_first_traverse(1)
+
+      expect(enumerator).to be_a Enumerator
+      expect(enumerator.to_a).to eq [1, 2, 3, 4]
+    end
+  end
+
   describe "#each_vertex" do
     it "yields each vertex to the given block" do
       vertices = [double, double, double, double]

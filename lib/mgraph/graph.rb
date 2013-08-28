@@ -57,13 +57,13 @@ module MGraph
     private
 
     def edges_for vertex
-      lookup_table.fetch(vertex, Set.new)
+      vertex_edges.fetch(vertex, Set.new)
     end
 
-    def lookup_table
-      @edges.each_with_object({}) do |edge, lookup_table|
+    def vertex_edges
+      @edges.each_with_object({}) do |edge, vertex_edges|
         edge.vertices.each do |vertex|
-          (lookup_table[vertex] ||= Set.new) << edge
+          (vertex_edges[vertex] ||= Set.new) << edge
         end
       end.freeze
     end

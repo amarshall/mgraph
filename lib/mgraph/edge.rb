@@ -6,6 +6,7 @@ module MGraph
 
     def initialize a, b
       @vertices = [a, b].to_set.freeze
+      freeze
     end
 
     def == other

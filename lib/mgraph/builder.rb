@@ -2,6 +2,7 @@ module MGraph
   class Builder
     def initialize neighbor_retriever
       @neighbor_retriever = neighbor_retriever
+      freeze
     end
 
     def build root

@@ -39,8 +39,6 @@ module MGraph
       (neighbors || Set.new) - [vertex]
     end
 
-    private
-
     def vertices
       @edges.map(&:vertices).reduce(:+)
     end

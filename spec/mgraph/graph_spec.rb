@@ -114,4 +114,14 @@ describe MGraph::Graph do
       expect(graph.neighbors(vertex)).to eq neighbors.to_set
     end
   end
+
+  describe "#vertices" do
+    it "returns a set with all the added vertices" do
+      vertices = [double, double, double, double]
+      graph = MGraph::Graph.new
+      vertices.each_cons(2) { |v1, v2| graph.add_edge v1, v2 }
+
+      expect(graph.vertices).to eq vertices.to_set
+    end
+  end
 end

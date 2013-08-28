@@ -4,7 +4,7 @@ describe MGraph::Graph do
   describe "#add_edge" do
     it "accepts edges as two vertices, returning the Edge" do
       v1, v2, = double, double
-      edge = double
+      edge = double vertices: [v1, v2]
       graph = MGraph::Graph.new
       MGraph::Edge.stub(:new).with(v1, v2).and_return edge
 
@@ -71,7 +71,7 @@ describe MGraph::Graph do
   describe "#edges" do
     it "returns all the edges" do
       v1, v2, v3, v4 = double, double
-      edge_1, edge_2 = double, double
+      edge_1, edge_2 = double(vertices: [v1, v2]), double(vertices: [v3, v4])
       graph = MGraph::Graph.new
       MGraph::Edge.stub(:new).with(v1, v2).and_return edge_1
       MGraph::Edge.stub(:new).with(v3, v4).and_return edge_2

@@ -1,16 +1,18 @@
 require 'mgraph/edge'
+require 'mgraph/node'
+require 'mgraph/vertex_edge_table'
 
 require 'set'
 
 module MGraph
   class Graph
     def initialize
-      @edges = Set.new
+      @graph_store = VertexEdgeTable.new
     end
 
     def add_edge v1, v2
       edge = Edge.new v1, v2
-      @edges << edge
+      @graph_store.add_edge edge
       edge
     end
 
@@ -33,12 +35,12 @@ module MGraph
     end
 
     def edges
-      @edges.dup.freeze
+      @graph_store.edges
     end
 
     def has_edge? v1, v2
       edge = Edge.new v1, v2
-      @edges.include? edge
+      edges.include? edge
     end
 
     def has_vertex? vertex
@@ -51,21 +53,13 @@ module MGraph
     end
 
     def vertices
-      vertex_edges.keys.to_set
+      @graph_store.vertices
     end
 
     private
 
     def edges_for vertex
-      vertex_edges.fetch(vertex, Set.new)
-    end
-
-    def vertex_edges
-      @edges.each_with_object({}) do |edge, vertex_edges|
-        edge.vertices.each do |vertex|
-          (vertex_edges[vertex] ||= Set.new) << edge
-        end
-      end.freeze
+      @graph_store[vertex]
     end
   end
 end

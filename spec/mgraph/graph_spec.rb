@@ -72,4 +72,22 @@ describe MGraph::Graph do
       expect(graph.has_vertex?(double)).to eq false
     end
   end
+
+  describe "#neighbors" do
+    it "returns an empty set when the vertex doesn't exist" do
+      graph = MGraph::Graph.new
+      expect(graph.neighbors(double)).to eq Set.new
+    end
+
+    it "returns the neighbors of a given vertex" do
+      neighbors = [double, double, double]
+      not_neighbors = [double, double, double]
+      vertex = [double]
+      graph = MGraph::Graph.new
+      neighbors.each { |neighbor| graph.add_edge vertex, neighbor }
+      neighbors.zip(not_neighbors) { |v1, v2| graph.add_edge v1, v2 }
+
+      expect(graph.neighbors(vertex)).to eq neighbors.to_set
+    end
+  end
 end

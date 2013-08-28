@@ -26,5 +26,12 @@ module MGraph
     def has_vertex? vertex
       @edges.map(&:vertices).reduce(:+).include? vertex
     end
+
+    def neighbors vertex
+      neighbors = @edges.select do |edge|
+        edge.vertices.include? vertex
+      end.map(&:vertices).reduce(:+)
+      (neighbors || Set.new) - [vertex]
+    end
   end
 end

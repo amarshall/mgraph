@@ -51,7 +51,7 @@ module MGraph
     end
 
     def vertices
-      @edges.map(&:vertices).reduce(:+)
+      vertex_edges.keys.to_set
     end
 
     private

@@ -14,6 +14,30 @@ describe MGraph::Graph do
     end
   end
 
+  describe "#each_vertex" do
+    it "yields each vertex to the given block" do
+      vertices = [double, double, double, double]
+      graph = MGraph::Graph.new
+      vertices.each_cons(2) { |v1, v2| graph.add_edge v1, v2 }
+
+      yielded = []
+      graph.each_vertex { |v| yielded << v }
+
+      expect(yielded).to eq vertices
+    end
+
+    it "returns an Enumerator when no block is given" do
+      vertices = [double, double, double, double]
+      graph = MGraph::Graph.new
+      vertices.each_cons(2) { |v1, v2| graph.add_edge v1, v2 }
+
+      enumerator = graph.each_vertex
+
+      expect(enumerator).to be_a Enumerator
+      expect(enumerator.to_a).to eq vertices
+    end
+  end
+
   describe "#edges" do
     it "returns all the edges" do
       v1, v2, v3, v4 = double, double

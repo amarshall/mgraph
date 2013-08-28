@@ -14,6 +14,11 @@ module MGraph
       edge
     end
 
+    def each_vertex
+      return vertices.each unless block_given?
+      vertices.each { |vertex| yield vertex }
+    end
+
     def edges
       @edges.dup.freeze
     end
@@ -24,7 +29,7 @@ module MGraph
     end
 
     def has_vertex? vertex
-      @edges.map(&:vertices).reduce(:+).include? vertex
+      vertices.include? vertex
     end
 
     def neighbors vertex
@@ -32,6 +37,12 @@ module MGraph
         edge.vertices.include? vertex
       end.map(&:vertices).reduce(:+)
       (neighbors || Set.new) - [vertex]
+    end
+
+    private
+
+    def vertices
+      @edges.map(&:vertices).reduce(:+)
     end
   end
 end

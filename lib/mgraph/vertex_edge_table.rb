@@ -16,7 +16,7 @@ module MGraph
     end
 
     def edges
-      @vertex_edges.values.reduce(Set.new, :+).freeze
+      @vertex_edges.each_value.reduce(Set.new, :+).freeze
     end
 
     def incident_edges vertex

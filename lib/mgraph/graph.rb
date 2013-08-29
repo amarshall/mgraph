@@ -1,5 +1,4 @@
 require 'mgraph/edge'
-require 'mgraph/node'
 require 'mgraph/vertex_edge_table'
 
 require 'set'

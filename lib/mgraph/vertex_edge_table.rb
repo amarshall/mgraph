@@ -4,12 +4,16 @@ module MGraph
       @vertex_edges = {}
     end
 
+    def << edge
+      add_edge(edge)
+      self
+    end
+
     def add_edge edge
       edge.vertices.each do |vertex|
         (@vertex_edges[vertex] ||= Set.new) << edge
       end
     end
-    alias_method :<<, :add_edge
 
     def edges
       @vertex_edges.values.reduce(Set.new, :+).freeze

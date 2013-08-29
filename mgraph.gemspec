@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['andrew@johnandrewmarshall.com']
   spec.description   = %q{A modern graph data structure library.}
   spec.summary       = %q{A modern graph data structure library.}
-  spec.homepage      = ''
+  spec.homepage      = 'http://johnandrewmarshall.com/projects/mgraph'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)

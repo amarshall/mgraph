@@ -8,7 +8,7 @@ A modern graph data structure library. Still very much a work-in-progress and in
 
 ## Installation
 
-Install as usual: `gem install mgraph` or add `gem 'mgraph'` to your Gemfile. Note that Ruby 2.0 is required.
+Install as usual: `gem install mgraph` or add `gem 'mgraph'` to your Gemfile
 
 ## Usage
 

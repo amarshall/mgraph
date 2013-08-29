@@ -4,7 +4,7 @@
 [![Code Climate rating](https://codeclimate.com/github/amarshall/mgraph.png)](https://codeclimate.com/github/amarshall/mgraph)
 [![Gem Version](https://badge.fury.io/rb/mgraph.png)](https://rubygems.org/gems/mgraph)
 
-A modern graph data structure library.
+A modern graph data structure library. Still very much a work-in-progress and in-flux.
 
 ## Installation
 

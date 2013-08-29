@@ -1,6 +1,6 @@
 # MGraph
 
-[![Build Status](https://secure.travis-ci.org/amarshall/mgraph.png?branch=master)](http://travis-ci.org/amarshall/mgraph)
+[![Build Status](https://secure.travis-ci.org/amarshall/mgraph.png?branch=master)](https://travis-ci.org/amarshall/mgraph)
 [![Code Climate rating](https://codeclimate.com/github/amarshall/mgraph.png)](https://codeclimate.com/github/amarshall/mgraph)
 [![Gem Version](https://badge.fury.io/rb/mgraph.png)](https://rubygems.org/gems/mgraph)
 

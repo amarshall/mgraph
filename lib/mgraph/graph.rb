@@ -48,18 +48,11 @@ module MGraph
     end
 
     def neighbors vertex
-      neighbors = edges_for(vertex).map(&:vertices).reduce(:+)
-      (neighbors || Set.new) - [vertex]
+      @graph_store.neighbors vertex
     end
 
     def vertices
       @graph_store.vertices
-    end
-
-    private
-
-    def edges_for vertex
-      @graph_store[vertex]
     end
   end
 end

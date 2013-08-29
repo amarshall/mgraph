@@ -4,20 +4,24 @@ module MGraph
       @vertex_edges = {}
     end
 
-    def [] vertex
-      @vertex_edges.fetch(vertex, Set.new)
-    end
-
-    def add vertex, edge
-      (@vertex_edges[vertex] ||= Set.new) << edge
-    end
-
     def add_edge edge
-      edge.vertices.each { |vertex| add(vertex, edge) }
+      edge.vertices.each do |vertex|
+        (@vertex_edges[vertex] ||= Set.new) << edge
+      end
     end
+    alias_method :<<, :add_edge
 
     def edges
       @vertex_edges.values.reduce(Set.new, :+).freeze
+    end
+
+    def incident_edges vertex
+      @vertex_edges.fetch(vertex, Set.new)
+    end
+
+    def neighbors vertex
+      adjacencies = incident_edges(vertex).map(&:vertices).reduce(:+) || Set.new
+      adjacencies - [vertex]
     end
 
     def vertices
